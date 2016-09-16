@@ -1,3 +1,5 @@
+<ng-include src="'global/header.html'"></ng-include>
+
 <form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="user-form">
   <div class="form-group">
     <label for="email">Email</label>
@@ -19,6 +21,6 @@
            class="form-control">
   </div>
 
-  <button type="submit" class="btn btn-primary btn-lg">Sign in</button>
-  <a ng-href="/sign_up" class="btn btn-info btn-lg">Sign Up</a>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+  <a ng-href="/sign_up" class="btn btn-info">Sign Up</a>
 </form>
