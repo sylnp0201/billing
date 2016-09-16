@@ -1,0 +1,13 @@
+{
+  "name" : "dsl-generated-dependencies",
+  "dependencies": {
+    "angular": "~1.5.8",
+    "angular-route": "~1.5.8",
+    "angular-resource": "~1.5.8",
+    "angular-cookie": "~4.1.0",
+    "ng-token-auth": "*"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  }
+}
