@@ -3,18 +3,26 @@
 <main class="container-fluid main-content cases">
   <h1>Cases</h1>
 
-  <button type="button" class="btn btn-default add-new">New Case</button>
+  <button type="button"
+          ng-click="$ctrl.newCase()"
+          class="btn btn-default add-new">New Case</button>
 
-  <table class="table">
+  <table class="table table-hover">
     <tr>
-      <th>id</th>
-      <th>name</th>
-      <th></th>
+      <th>Number</th>
+      <th>Client</th>
+      <th>Note</th>
+      <th>Edit</th>
+      <th>Remove</th>
     </tr>
-    <tr ng-repeat="case in cases">
-      <td>{{case.id}}</td>
+    <tr ng-repeat="case in $ctrl.cases">
       <td>{{case.name}}</td>
-      <td><a ng-href="/cases/{{case.id}}">edit</a></td>
+      <td>{{case.client}}</td>
+      <td>{{case.description}}</td>
+      <td><span ng-click="$ctrl.editCase(case.id)"
+                class="clickable glyphicon glyphicon-pencil"></span></td>
+      <td><span ng-click="$ctrl.destroyCase(case.id)"
+                class="clickable glyphicon glyphicon-trash"></span></td>
     </tr>
   </table>
 </main>

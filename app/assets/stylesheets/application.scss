@@ -1,8 +1,10 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "lib/angular-ui-notification";
 
 @import "users";
 @import "cases";
+
 
 html {
   box-sizing: border-box;
@@ -18,6 +20,13 @@ a {
 
 img {
   max-width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+  &:hover {
+    color: #00B9E7;
+  }
 }
 
 .main-content {

@@ -6,6 +6,8 @@
     "angular-resource": "~1.5.8",
     "angular-cookie": "~4.1.0",
     "angular-ui-router": "*",
+    "angular-bootstrap": "*",
+    "angular-ui-notification": "*",
     "ng-token-auth": "*"
   },
   "resolutions": {

@@ -1,0 +1,31 @@
+<div class="case-new">
+  <div class="modal-header">
+    <h3 class="modal-title">Create a new case</h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="name">Case Number</label>
+      <input type="text"
+             name="name"
+             ng-model="$ctrl.case.name"
+             required="required"
+             class="form-control">
+     <label for="name">Client</label>
+     <input type="text"
+            name="client"
+            ng-model="$ctrl.case.client"
+            class="form-control">
+     <label for="description">Note</label>
+     <textarea type="text"
+               name="description"
+               ng-model="$ctrl.case.description"
+               class="form-control"/>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

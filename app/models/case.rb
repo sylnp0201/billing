@@ -1,7 +1,10 @@
 class Case < ApplicationRecord
-  validates :name,  presence: true
+  validates :name,  presence: true, uniqueness: {
+    scope: :user,
+    message: 'The case name has been taken'
+  }
+  validates :user,  presence: true
 
-  has_many :users, :through => :assignments
-  has_many :assignments, dependent: :destroy
+  belongs_to :user
   has_many :bills
 end

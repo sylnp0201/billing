@@ -2,8 +2,18 @@ angular.module('app.controllers', []);
 angular.module('app.resources', []);
 angular.module('app.directives', []);
 
+var Utils = Utils || {
+  notifyError: (notify) => {
+    return (error) => {
+      notify.error((error.data && error.data.message) || error.statusText || 'Error!');
+    }
+  }
+};
+
 const app = angular.module('app', [
   'ui.router',
+  'ui.bootstrap',
+  'ui-notification',
   'ngResource',
   'ng-token-auth',
   'templates',
@@ -11,8 +21,8 @@ const app = angular.module('app', [
   'app.controllers',
   'app.directives',
 ])
-.config(['$locationProvider', '$stateProvider',
-  function ($locationProvider, $stateProvider) {
+.config(['$locationProvider', '$stateProvider', 'NotificationProvider',
+  function ($locationProvider, $stateProvider, NotificationProvider) {
     $stateProvider
       .state({
         name: 'home',
@@ -30,16 +40,27 @@ const app = angular.module('app', [
         name: 'signUp',
         url: '/sign_up',
         templateUrl: 'user_registrations/new.html',
+        controller: 'UserRegistrationsController',
       })
       .state({
         name: 'cases',
         url: '/cases',
         templateUrl: 'cases/index.html',
-        controller: 'CasesController',
+        controller: 'CasesController as $ctrl',
         resolve: { auth: ($auth) => $auth.validateUser() },
       });
 
     $locationProvider.html5Mode(true);
+
+    NotificationProvider.setOptions({
+      delay: 3000,
+      startTop: 20,
+      startRight: 10,
+      verticalSpacing: 20,
+      horizontalSpacing: 20,
+      positionX: 'left',
+      positionY: 'bottom'
+    });
   }
 ]);
 

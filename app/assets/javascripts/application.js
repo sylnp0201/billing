@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-ui-router
+//= require angular-ui-notification
+//= require angular-bootstrap
 //= require angular-route
 //= require angular-cookie
 //= require angular-resource
