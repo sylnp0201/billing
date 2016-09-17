@@ -1,26 +1,27 @@
 <ng-include src="'global/header.html'"></ng-include>
 
-<form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="user-form">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email"
-           name="email"
-           id="email"
-           ng-model="loginForm.email"
-           required="required"
-           class="form-control">
-  </div>
+<main class="container-fluid main-content">
+  <form ng-submit="submitLogin(loginForm)" role="form" ng-init="loginForm = {}" class="user-form">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email"
+             name="email"
+             id="email"
+             ng-model="loginForm.email"
+             required="required"
+             class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password"
+             name="password"
+             id="password"
+             ng-model="loginForm.password"
+             required="required"
+             class="form-control">
+    </div>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password"
-           name="password"
-           id="password"
-           ng-model="loginForm.password"
-           required="required"
-           class="form-control">
-  </div>
-
-  <button type="submit" class="btn btn-primary">Sign in</button>
-  <a ng-href="/sign_up" class="btn btn-info">Sign Up</a>
-</form>
+    <button type="submit" class="btn btn-primary">Login</button>
+    <small>Don't have an account? <a ng-href="/sign_up">Sign Up</a></small>
+  </form>
+<main class="container-fluid main-content">

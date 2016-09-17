@@ -1,29 +1,44 @@
 angular.module('app.controllers', []);
 angular.module('app.resources', []);
+angular.module('app.directives', []);
 
-var app = angular.module('app', [
-  'ngRoute',
+const app = angular.module('app', [
+  'ui.router',
   'ngResource',
   'ng-token-auth',
   'templates',
   'app.resources',
   'app.controllers',
-]).config(['$routeProvider', '$locationProvider',
-  function ($routeProvider, $locationProvider) {
-    $routeProvider
-      .when('/', {
+  'app.directives',
+])
+.config(['$locationProvider', '$stateProvider',
+  function ($locationProvider, $stateProvider) {
+    $stateProvider
+      .state({
+        name: 'home',
+        url: '/',
         templateUrl: 'home.html',
-        controller: 'HomeController'
+        controller: 'HomeController',
+        resolve: { auth: ($auth) => $auth.validateUser() },
       })
-      .when('/sign_in', {
+      .state({
+        name: 'login',
+        url: '/sign_in',
         templateUrl: 'user_sessions/new.html',
-        controller: 'UserSessionsController'
       })
-      .when('/sign_up', {
+      .state({
+        name: 'signUp',
+        url: '/sign_up',
         templateUrl: 'user_registrations/new.html',
-        controller: 'UserRegistrationsController'
       })
-      .otherwise({ redirectTo: '/' });
+      .state({
+        name: 'cases',
+        url: '/cases',
+        templateUrl: 'cases/index.html',
+        controller: 'CasesController',
+        resolve: { auth: ($auth) => $auth.validateUser() },
+      });
+
     $locationProvider.html5Mode(true);
   }
 ]);
@@ -31,5 +46,11 @@ var app = angular.module('app', [
 app.run(['$rootScope', '$location', function($rootScope, $location) {
   $rootScope.$on('auth:login-success', function() {
     $location.path('/');
+  });
+  $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+    if (error && error.reason === 'unauthorized') {
+      event.preventDefault();
+      $location.path('/sign_in');
+    }
   });
 }]);

@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require angular
+//= require angular-ui-router
 //= require angular-route
 //= require angular-cookie
 //= require angular-resource

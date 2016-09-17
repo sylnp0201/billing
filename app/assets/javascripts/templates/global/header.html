@@ -2,12 +2,15 @@
   <div class="container-fluid">
     <ul class="nav navbar-nav navbar-left">
       <li>
-        <a ng-href="/">Home</a>
+        <a ng-href="/">Home {{foo}}</a>
+      </li>
+      <li>
+        <a ng-href="/cases">Cases</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li ng-show="!user.id">
-        <a ng-href="/sign_in">Sign in</a>
+        <a ng-href="/sign_in">Login</a>
       </li>
       <li ng-show="!user.id">
         <a ng-href="/sign_up">Sign up</a>
