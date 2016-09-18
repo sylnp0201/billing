@@ -1,0 +1,29 @@
+.main-content {
+  padding-top: 40px;
+}
+
+.clickable {
+  cursor: pointer;
+  &:hover {
+    color: #00B9E7;
+  }
+}
+
+.content-head {
+  display: flex;
+  align-items: baseline;;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  h1 {
+    float: left;
+  }
+
+  .add-new {
+    float: right;
+  }
+}
+
+.modal-title {
+  text-transform: capitalize;
+}

@@ -11,7 +11,6 @@ module Api
     def create
       begin
         @case = @current_user.cases.create!(case_params)
-        render json: @case
       rescue ActiveRecord::RecordInvalid => e
         render :json => { message: e }, :status => :unprocessable_entity
       end

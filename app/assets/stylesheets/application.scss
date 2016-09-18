@@ -4,6 +4,7 @@
 
 @import "users";
 @import "cases";
+@import "base";
 
 
 html {
@@ -20,15 +21,4 @@ a {
 
 img {
   max-width: 100%;
-}
-
-.clickable {
-  cursor: pointer;
-  &:hover {
-    color: #00B9E7;
-  }
-}
-
-.main-content {
-  padding-top: 40px;
 }

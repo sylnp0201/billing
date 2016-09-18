@@ -4,4 +4,6 @@ class Bill < ApplicationRecord
 
   belongs_to :user
   belongs_to :case
+
+  accepts_nested_attributes_for :case
 end

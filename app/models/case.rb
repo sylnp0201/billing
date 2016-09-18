@@ -6,5 +6,5 @@ class Case < ApplicationRecord
   validates :user,  presence: true
 
   belongs_to :user
-  has_many :bills
+  has_many :bills, dependent: :destroy
 end

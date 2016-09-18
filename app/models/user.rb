@@ -5,4 +5,5 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :cases, dependent: :destroy
+  has_many :bills, through: :cases
 end

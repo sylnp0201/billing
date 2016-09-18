@@ -10,13 +10,12 @@ angular
       };
 
       // create a new case
-      $ctrl.newCase = (size) => {
+      $ctrl.newCase = () => {
         var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'cases/new.html',
           controller: 'NewCaseModalCtrl',
           controllerAs: '$ctrl',
-          size: size,
         });
 
         modalInstance.result.then(function (newCase) {

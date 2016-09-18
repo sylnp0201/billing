@@ -1,11 +1,13 @@
 <app-header></app-header>
 
 <main class="container-fluid main-content cases">
-  <h1>Cases</h1>
+  <div class="content-head">
+    <h1>Cases</h1>
 
-  <button type="button"
-          ng-click="$ctrl.newCase()"
-          class="btn btn-default add-new">New Case</button>
+    <button type="button"
+            ng-click="$ctrl.newCase()"
+            class="btn btn-default add-new">New Case</button>
+  </div>
 
   <table class="table table-hover">
     <tr>

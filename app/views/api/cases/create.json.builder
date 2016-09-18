@@ -1,1 +1,0 @@
-json.(@case, :name, :deadline)

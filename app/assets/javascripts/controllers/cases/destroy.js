@@ -5,7 +5,7 @@ angular
     $ctrl.item = item;
 
     $ctrl.ok = function() {
-      $uibModalInstance.close(item);
+      $uibModalInstance.close($ctrl.item);
     };
 
     $ctrl.cancel = function() {

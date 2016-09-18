@@ -28,7 +28,7 @@ const app = angular.module('app', [
         name: 'home',
         url: '/',
         templateUrl: 'home.html',
-        controller: 'HomeController',
+        controller: 'HomeController as $ctrl',
         resolve: { auth: ($auth) => $auth.validateUser() },
       })
       .state({
