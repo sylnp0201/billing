@@ -5,15 +5,16 @@ angular
       var $ctrl = this;
 
       // render index page
-      $ctrl.init = () => {
-        $ctrl.summary = Summary.query((items) => {
-          return items.map((item) =>
-            Object.assign(item, { isCollapsed: true }));
-        })
+      $ctrl.init = function() {
+        $ctrl.summary = Summary.query(function(items) {
+          return items.map(function(item) {
+            return Object.assign(item, { isCollapsed: true });
+          });
+        });
       };
 
       // toggle summary record collapse
-      $ctrl.toggleCollapsed = (item) => {
+      $ctrl.toggleCollapsed = function(item) {
         item.isCollapsed = !item.isCollapsed;
       };
 

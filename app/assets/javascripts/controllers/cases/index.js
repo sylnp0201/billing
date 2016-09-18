@@ -5,12 +5,12 @@ angular
       var $ctrl = this;
 
       // render case index page
-      $ctrl.init = () => {
+      $ctrl.init = function() {
         $ctrl.cases = Case.query();
       };
 
       // create a new case
-      $ctrl.newCase = () => {
+      $ctrl.newCase = function() {
         var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'cases/new.html',
@@ -21,7 +21,7 @@ angular
         modalInstance.result.then(function (newCase) {
           Case.save(
             { case: newCase },
-            (data) => {
+            function(data) {
               Notification.success('A new case has been created.');
               $ctrl.cases.push(data);
             },
@@ -31,7 +31,7 @@ angular
       };
 
       // edit a new case
-      $ctrl.editCase = (id) => {
+      $ctrl.editCase = function(id) {
         var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'cases/edit.html',
@@ -39,14 +39,16 @@ angular
           controllerAs: '$ctrl',
           resolve: {
             kase: function () {
-              return $ctrl.cases.find((kase) => kase.id === id);
+              return $ctrl.cases.find(function(kase) {
+                return kase.id === id;
+              });
             }
           }
         });
 
         modalInstance.result.then(function (caseToUpdate) {
           caseToUpdate.$update(
-            (data) => {
+            function(data) {
               Notification.success('The case has been updated successfully.');
             },
             Utils.notifyError(Notification)
@@ -55,7 +57,7 @@ angular
       };
 
       // delete a case
-      $ctrl.destroyCase = (id) => {
+      $ctrl.destroyCase = function(id) {
         var modalInstance = $uibModal.open({
           animation: true,
           templateUrl: 'cases/destroy.html',
@@ -63,17 +65,21 @@ angular
           controllerAs: '$ctrl',
           resolve: {
             item: function () {
-              return $ctrl.cases.find((item) => item.id === id);
+              return $ctrl.cases.find(function(item) {
+                return item.id === id;
+              });
             }
           }
         });
 
         modalInstance.result.then(function (caseToDelete) {
           caseToDelete.$delete(
-            (data) => {
+            function(data) {
               Notification.success('Case has been deleted.');
               $ctrl.cases = $ctrl.cases
-                .filter((item) => item.id !== caseToDelete.id);
+                .filter(function(item) {
+                  return item.id !== caseToDelete.id;
+                });
             },
             Utils.notifyError(Notification)
           );

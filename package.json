@@ -1,0 +1,26 @@
+{
+  "name": "billing",
+  "version": "1.0.0",
+  "description": "This README would normally document whatever steps are necessary to get the application up and running.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sylnp0201/billing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sylnp0201/billing/issues"
+  },
+  "homepage": "https://github.com/sylnp0201/billing#readme",
+  "dependencies": {
+    "bower": "^1.7.9"
+  }
+}

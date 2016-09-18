@@ -1,4 +1,6 @@
 angular.module('app.resources')
-  .factory('Summary', function($resource) {
-    return $resource('/api/summary');
-  });
+  .factory('Summary', ['$resource',
+    function($resource) {
+      return $resource('/api/summary');
+    }
+  ]);

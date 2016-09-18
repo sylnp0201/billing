@@ -22,5 +22,6 @@ module Billing
     end
 
     config.assets.paths << Rails.root.join('node_modules')
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end

@@ -3,11 +3,14 @@ angular.module('app.resources', []);
 angular.module('app.directives', []);
 
 var Utils = Utils || {
-  notifyError: (notify) => {
-    return (error) => {
+  notifyError: function (notify) {
+    return function (error) {
       notify.error((error.data && error.data.message) || error.statusText || 'Error!');
     }
-  }
+  },
+  validateUser: ['$auth', function($auth) {
+    return $auth.validateUser();
+  }],
 };
 
 const app = angular.module('app', [
@@ -29,7 +32,7 @@ const app = angular.module('app', [
         url: '/',
         templateUrl: 'home.html',
         controller: 'HomeController as $ctrl',
-        resolve: { auth: ($auth) => $auth.validateUser() },
+        resolve: { auth: Utils.validateUser },
       })
       .state({
         name: 'login',
@@ -47,14 +50,14 @@ const app = angular.module('app', [
         url: '/billings',
         templateUrl: 'bills/index.html',
         controller: 'BillsController as $ctrl',
-        resolve: { auth: ($auth) => $auth.validateUser() },
+        resolve: { auth: Utils.validateUser },
       })
       .state({
         name: 'cases',
         url: '/cases',
         templateUrl: 'cases/index.html',
         controller: 'CasesController as $ctrl',
-        resolve: { auth: ($auth) => $auth.validateUser() },
+        resolve: { auth: Utils.validateUser },
       });
 
     $locationProvider.html5Mode(true);
@@ -82,3 +85,5 @@ app.run(['$rootScope', '$location', function($rootScope, $location) {
     }
   });
 }]);
+
+window.app = app;
