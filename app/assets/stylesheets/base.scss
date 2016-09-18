@@ -23,3 +23,23 @@
 .modal-title {
   text-transform: capitalize;
 }
+
+.modal-date {
+  label,
+  input {
+    float: left;
+    clear: both;
+  }
+
+  input {
+    width: 50%;
+  }
+
+  .uib-datepicker-popup.dropdown-menu {
+    padding: 6px;
+  }
+
+  .uib-button-bar {
+    padding: 10px 0 2px;
+  }
+}

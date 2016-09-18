@@ -12,6 +12,22 @@
       </select>
     </div>
 
+    <div class="form-group modal-date">
+      <label for="date">Date</label>
+      <input type="text" class="form-control"
+             uib-datepicker-popup="{{$ctrl.dateFormat}}"
+             ng-model="$ctrl.bill.date"
+             is-open="$ctrl.calendar.opened"
+             datepicker-options="$ctrl.dateOptions"
+             ng-required="true"
+             close-text="Close" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="$ctrl.openCalendar()">
+          <i class="glyphicon glyphicon-calendar"></i>
+        </button>
+      </span>
+    </div>
+
     <div class="form-group">
       <label for="name">Hours Spent</label>
       <input type="text"
