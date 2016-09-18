@@ -43,6 +43,13 @@ const app = angular.module('app', [
         controller: 'UserRegistrationsController',
       })
       .state({
+        name: 'bills',
+        url: '/billings',
+        templateUrl: 'bills/index.html',
+        controller: 'BillsController as $ctrl',
+        resolve: { auth: ($auth) => $auth.validateUser() },
+      })
+      .state({
         name: 'cases',
         url: '/cases',
         templateUrl: 'cases/index.html',

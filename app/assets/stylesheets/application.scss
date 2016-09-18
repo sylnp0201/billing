@@ -2,10 +2,10 @@
 @import "bootstrap";
 @import "lib/angular-ui-notification";
 
+@import "base";
 @import "users";
 @import "cases";
-@import "base";
-
+@import "home";
 
 html {
   box-sizing: border-box;

@@ -1,8 +1,6 @@
 module Api
   class CasesController < ApiController
 
-    before_action :set_user
-
     def index
       @cases = @current_user.cases
       render json: @cases
@@ -11,6 +9,7 @@ module Api
     def create
       begin
         @case = @current_user.cases.create!(case_params)
+        render json: @case
       rescue ActiveRecord::RecordInvalid => e
         render :json => { message: e }, :status => :unprocessable_entity
       end
@@ -34,10 +33,6 @@ module Api
 
       def case_params
         params.require(:case).permit(:id, :name, :deadline, :client, :description)
-      end
-
-      def set_user
-        @current_user = current_api_user
       end
 
   end

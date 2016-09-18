@@ -1,11 +1,15 @@
 <app-header></app-header>
 
-<main class="container-fluid main-content home">
+<main class="container-fluid main-content bills">
   <div class="content-head">
-    <h1>Billing Summary</h1>
+    <h1>Billing Records</h1>
+
+    <button type="button"
+            ng-click="$ctrl.newBill()"
+            class="btn btn-default add-new">New Billing Record</button>
   </div>
 
-  <table class="table table-hover table-condensed table-expandable">
+  <table class="table">
     <tr>
       <th>Case Number</th>
       <th>Client</th>
@@ -15,21 +19,7 @@
       <th>Edit</th>
       <th>Remove</th>
     </tr>
-    <tr ng-repeat-start="item in $ctrl.summary"
-        class="clickable"
-        ng-click="$ctrl.toggleCollapsed(item)">
-      <td>{{item.case.name}}</td>
-      <td>{{item.case.client}}</td>
-      <td>{{item.stats.spent}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr ng-repeat-end
-        ng-repeat="bill in item.bills"
-        uib-collapse="item.isCollapsed"
-        class="active">
+    <tr ng-repeat="bill in $ctrl.bills">
       <td>{{bill.case.name}}</td>
       <td>{{bill.case.client}}</td>
       <td>{{bill.spent}}</td>

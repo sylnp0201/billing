@@ -1,8 +1,6 @@
 module Api
   class BillsController < ApiController
 
-    before_action :set_user
-
     def index
       @bills = @current_user.bills.includes(:case)
     end
@@ -43,10 +41,6 @@ module Api
 
       def bill_params
         params.require(:bill).permit(:id, :case_id, :date, :description, :spent)
-      end
-
-      def set_user
-        @current_user = current_api_user
       end
 
   end

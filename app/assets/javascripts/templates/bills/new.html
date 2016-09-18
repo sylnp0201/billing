@@ -6,7 +6,7 @@
   <div class="modal-body">
     <div class="form-group">
       <label for="case">Case To Bill</label>
-      <select ng-options="case as case.name for case in $ctrl.cases track by case.id"
+      <select ng-options="case as (case.name + ' | ' + case.client) for case in $ctrl.cases track by case.id"
               class="form-control"
               ng-model="$ctrl.bill.case">
       </select>

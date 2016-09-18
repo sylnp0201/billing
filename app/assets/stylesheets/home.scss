@@ -1,0 +1,11 @@
+.table-expandable {
+  th, td {
+    width: 10%;
+  }
+
+  td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
