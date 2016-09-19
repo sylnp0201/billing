@@ -5,6 +5,10 @@ module Api
       @bills = @current_user.bills.includes(:case).order(:id)
     end
 
+    def show
+      @bill = @current_user.bills.find(params[:id])
+    end
+
     def create
       begin
         @bill = Bill.new(user: @current_user)

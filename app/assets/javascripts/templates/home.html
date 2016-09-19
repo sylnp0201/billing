@@ -37,7 +37,7 @@
       <td>{{bill.description}}</td>
       <td><span ng-click="$ctrl.editBill(bill.id)"
                 class="clickable glyphicon glyphicon-pencil"></span></td>
-      <td><span ng-click="$ctrl.destroyBill(bill.id)"
+      <td><span ng-click="$ctrl.destroyBill(item, bill.id)"
                 class="clickable glyphicon glyphicon-trash"></span></td>
     </tr>
   </table>
