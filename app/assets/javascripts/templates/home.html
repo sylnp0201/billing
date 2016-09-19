@@ -20,7 +20,7 @@
         ng-click="$ctrl.toggleCollapsed(item)">
       <td>{{item.case.name}}</td>
       <td>{{item.case.client}}</td>
-      <td>{{item.stats.spent}}</td>
+      <td>{{item.stats.spent | number:1}}</td>
       <td></td>
       <td></td>
       <td></td>
@@ -32,8 +32,8 @@
         class="active">
       <td>{{bill.case.name}}</td>
       <td>{{bill.case.client}}</td>
-      <td>{{bill.spent}}</td>
-      <td>{{bill.date}}</td>
+      <td>{{bill.spent | number:1}}</td>
+      <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
       <td>{{bill.description}}</td>
       <td><span ng-click="$ctrl.editBill(bill.id)"
                 class="clickable glyphicon glyphicon-pencil"></span></td>

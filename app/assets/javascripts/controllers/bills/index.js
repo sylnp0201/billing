@@ -6,7 +6,12 @@ angular
 
       // render index page
       $ctrl.init = function() {
-        $ctrl.bills = Bill.query();
+        $ctrl.bills = Bill.query(function(items) {
+          return items.map(function(item) {
+            item.date = Utils.strToDate(item.date);
+            return item;
+          })
+        });
       };
 
       // fetch cases

@@ -12,13 +12,8 @@ angular
         $ctrl.calendar.opened = true;
       };
 
-      $ctrl.dateOptions = {
-        maxDate: new Date(2032, 1, 1),
-        minDate: new Date(2012, 1, 1),
-        showWeeks: false,
-      };
-
-      $ctrl.dateFormat = 'yyyy-MM-dd';
+      $ctrl.dateOptions = Utils.calendarOptions;
+      $ctrl.dateFormat = Utils.calendarDateFormat;
 
       $ctrl.ok = function() {
         $uibModalInstance.close($ctrl.bill);

@@ -2,7 +2,7 @@ module Api
   class BillsController < ApiController
 
     def index
-      @bills = @current_user.bills.includes(:case)
+      @bills = @current_user.bills.includes(:case).order(:id)
     end
 
     def create

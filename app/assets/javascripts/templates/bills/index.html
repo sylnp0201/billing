@@ -22,8 +22,8 @@
     <tr ng-repeat="bill in $ctrl.bills">
       <td>{{bill.case.name}}</td>
       <td>{{bill.case.client}}</td>
-      <td>{{bill.spent}}</td>
-      <td>{{bill.date}}</td>
+      <td>{{bill.spent | number}}</td>
+      <td>{{bill.date | date : 'yyyy-MM-dd'}}</td>
       <td>{{bill.description}}</td>
       <td><span ng-click="$ctrl.editBill(bill.id)"
                 class="clickable glyphicon glyphicon-pencil"></span></td>

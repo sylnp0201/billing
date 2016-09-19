@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160917005242) do
+ActiveRecord::Schema.define(version: 20160919002617) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "assignments", force: :cascade do |t|
     t.integer  "user_id"
@@ -22,12 +25,12 @@ ActiveRecord::Schema.define(version: 20160917005242) do
   create_table "bills", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "case_id"
-    t.date     "date"
+    t.datetime "date"
     t.text     "description"
     t.float    "spent"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["user_id", "case_id"], name: "index_bills_on_user_id_and_case_id"
+    t.index ["user_id", "case_id"], name: "index_bills_on_user_id_and_case_id", using: :btree
   end
 
   create_table "cases", force: :cascade do |t|
@@ -38,10 +41,10 @@ ActiveRecord::Schema.define(version: 20160917005242) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["deadline"], name: "index_cases_on_deadline"
-    t.index ["name"], name: "index_cases_on_name"
-    t.index ["user_id", "name"], name: "index_cases_on_user_id_and_name"
-    t.index ["user_id"], name: "index_cases_on_user_id"
+    t.index ["deadline"], name: "index_cases_on_deadline", using: :btree
+    t.index ["name"], name: "index_cases_on_name", using: :btree
+    t.index ["user_id", "name"], name: "index_cases_on_user_id_and_name", using: :btree
+    t.index ["user_id"], name: "index_cases_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,9 +70,9 @@ ActiveRecord::Schema.define(version: 20160917005242) do
     t.text     "tokens"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
-    t.index ["email"], name: "index_users_on_email"
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+    t.index ["email"], name: "index_users_on_email", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
 end

@@ -11,6 +11,15 @@ var Utils = Utils || {
   validateUser: ['$auth', function($auth) {
     return $auth.validateUser();
   }],
+  calendarOptions: {
+    maxDate: new Date(2032, 1, 1),
+    minDate: new Date(2012, 1, 1),
+    showWeeks: false,
+  },
+  calendarDateFormat: 'yyyy-MM-dd',
+  strToDate: function(text) {
+    return new Date(text);
+  },
 };
 
 const app = angular.module('app', [

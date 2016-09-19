@@ -1,9 +1,8 @@
 angular
   .module('app.controllers')
-  .controller('EditCaseModalCtrl', ['$uibModalInstance',
+  .controller('EditCaseModalCtrl', ['$uibModalInstance', 'kase',
     function ($uibModalInstance, kase) {
       var $ctrl = this;
-      $ctrl.case = kase;
 
       $ctrl.ok = function() {
         $uibModalInstance.close($ctrl.case);
@@ -12,5 +11,11 @@ angular
       $ctrl.cancel = function() {
         $uibModalInstance.dismiss('cancel');
       };
+
+      $ctrl.init = function() {
+        $ctrl.case = kase;
+      };
+
+      $ctrl.init();
     }
   ]);
