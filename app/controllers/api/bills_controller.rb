@@ -7,7 +7,7 @@ module Api
       @bills = @current_user.bills
         .includes(:case)
         .where(date: Date.parse(startday).beginning_of_day..Date.parse(endday).end_of_day)
-        .order(date: :desc)
+        .order(case_id: :asc, date: :desc)
     end
 
     def show

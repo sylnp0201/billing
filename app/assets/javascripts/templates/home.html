@@ -16,7 +16,7 @@
 
       <button type="button"
               ng-click=""
-              class="btn btn-primary">New Billing</button>
+              class="btn btn-primary">New Bill</button>
     </div>
 
   </div>
@@ -25,6 +25,7 @@
     <tr>
       <th>Case Number</th>
       <th>Client</th>
+      <th>Note</th>
       <th>Spent</th>
       <th>Date</th>
       <th>Reason</th>
@@ -32,6 +33,7 @@
     <tr ng-repeat="bill in $ctrl.bills">
       <td>{{bill.case.name}}</td>
       <td>{{bill.case.client}}</td>
+      <td>{{bill.case.description}}</td>
       <td>{{bill.spent | number:1}}</td>
       <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
       <td>{{bill.reason.name}}</td>
