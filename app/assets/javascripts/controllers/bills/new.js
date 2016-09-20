@@ -1,7 +1,7 @@
 angular
   .module('app.controllers')
-  .controller('NewBillModalCtrl', ['$uibModalInstance', 'cases',
-    function ($uibModalInstance, cases) {
+  .controller('NewBillModalCtrl', ['$uibModalInstance', 'cases', 'reasons',
+    function ($uibModalInstance, cases, reasons) {
       var $ctrl = this;
 
       $ctrl.today = function() {
@@ -26,6 +26,7 @@ angular
       $ctrl.init = function() {
         $ctrl.bill = {};
         $ctrl.cases = cases;
+        $ctrl.reasons = reasons;
         $ctrl.calendar = { opened: false };
         $ctrl.today();
       };

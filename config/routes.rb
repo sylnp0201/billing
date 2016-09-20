@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     mount_devise_token_auth_for 'User', at: '/auth'
     resources :cases
     resources :bills
+    resources :reasons
     get 'summary', to: 'summary#index'
   end
 

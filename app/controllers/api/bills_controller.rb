@@ -2,7 +2,7 @@ module Api
   class BillsController < ApiController
 
     def index
-      @bills = @current_user.bills.includes(:case).order(:id)
+      @bills = @current_user.bills.includes(:case).order(id: :desc)
     end
 
     def show
@@ -44,7 +44,7 @@ module Api
     private
 
       def bill_params
-        params.require(:bill).permit(:id, :case_id, :date, :description, :spent)
+        params.require(:bill).permit(:id, :case_id, :reason_id, :date, :description, :spent)
       end
 
   end

@@ -1,0 +1,15 @@
+<div class="reason-destroy">
+  <div class="modal-header">
+    <h3 class="modal-title">Are you sure?</h3>
+  </div>
+
+  <div class="modal-body">
+    Please confirm that you want to delete reason <strong>{{$ctrl.reason.name}}</strong>.
+    This will can not be done if the reason is used by any billing record.
+  </div>
+
+  <div class="modal-footer">
+      <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+      <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+  </div>
+</div>

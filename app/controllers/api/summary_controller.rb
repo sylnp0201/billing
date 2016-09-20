@@ -2,7 +2,7 @@ module Api
   class SummaryController < ApiController
 
     def index
-      bills = @current_user.bills.includes(:case)
+      bills = @current_user.bills.includes(:case, :reason)
       @result = {}
 
       bills.each do |bill|

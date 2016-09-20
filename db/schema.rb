@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919002617) do
+ActiveRecord::Schema.define(version: 20160920002425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20160919002617) do
     t.integer  "user_id"
     t.integer  "case_id"
     t.datetime "date"
-    t.text     "description"
     t.float    "spent"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "reason_id"
     t.index ["user_id", "case_id"], name: "index_bills_on_user_id_and_case_id", using: :btree
   end
 
@@ -45,6 +45,12 @@ ActiveRecord::Schema.define(version: 20160919002617) do
     t.index ["name"], name: "index_cases_on_name", using: :btree
     t.index ["user_id", "name"], name: "index_cases_on_user_id_and_name", using: :btree
     t.index ["user_id"], name: "index_cases_on_user_id", using: :btree
+  end
+
+  create_table "reasons", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

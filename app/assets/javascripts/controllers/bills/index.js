@@ -1,7 +1,7 @@
 angular
   .module('app.controllers')
-  .controller('BillsController', ['Bill', 'Case', '$uibModal', 'Notification',
-    function(Bill, Case, $uibModal, Notification) {
+  .controller('BillsController', ['Bill', 'Case', 'Reason', '$uibModal', 'Notification',
+    function(Bill, Case, Reason, $uibModal, Notification) {
       var $ctrl = this;
 
       // render index page
@@ -23,6 +23,15 @@ angular
         return $ctrl.cases;
       }
 
+      // fetch reasons
+      $ctrl.fetchReasons = function() {
+        if (!$ctrl.reasons) {
+          return $ctrl.reasons = Reason.query();
+        }
+
+        return $ctrl.reasons;
+      }
+
       // create a new bill
       $ctrl.newBill = function() {
         var modalInstance = $uibModal.open({
@@ -32,16 +41,18 @@ angular
           controllerAs: '$ctrl',
           resolve: {
             cases: $ctrl.fetchCases,
+            reasons: $ctrl.fetchReasons,
           }
         });
 
         modalInstance.result.then(function (newBill) {
           newBill.case_id = newBill.case.id;
+          newBill.reason_id = newBill.reason.id;
           Bill.save(
             { bill: newBill },
             function(data) {
               Notification.success('A new bill has been created.');
-              $ctrl.bills.push(data);
+              $ctrl.bills.unshift(data);
             },
             Utils.notifyError(Notification)
           );
@@ -62,11 +73,15 @@ angular
               });
             },
             cases: $ctrl.fetchCases,
+            reasons: $ctrl.fetchReasons,
           }
         });
 
         modalInstance.result.then(function (billToUpdate) {
           billToUpdate.case_id = billToUpdate.case.id;
+          if (billToUpdate.reason) {
+            billToUpdate.reason_id = billToUpdate.reason.id;
+          }
           billToUpdate.$update(
             function(data) {
               Notification.success('The billing record has been updated successfully.');
