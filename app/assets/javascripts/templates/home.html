@@ -3,6 +3,22 @@
 <main class="container-fluid main-content home">
   <div class="content-head">
     <h1>Billing Summary</h1>
+    <div class="button-group">
+      <button type="button"
+              ng-click="$ctrl.lastMonth()"
+              class="btn btn-default">Last Month</button>
+      <button type="button"
+              ng-click="$ctrl.lastWeek()"
+              class="btn btn-default">Last Week</button>
+      <button type="button"
+              ng-click="$ctrl.today()"
+              class="btn btn-default">Today</button>
+
+      <button type="button"
+              ng-click=""
+              class="btn btn-primary">New Billing</button>
+    </div>
+
   </div>
 
   <table class="table table-hover table-condensed table-expandable">
@@ -12,29 +28,13 @@
       <th>Spent</th>
       <th>Date</th>
       <th>Reason</th>
-      <th>Remove</th>
     </tr>
-    <tr ng-repeat-start="item in $ctrl.summary"
-        class="clickable"
-        ng-click="$ctrl.toggleCollapsed(item)">
-      <td>{{item.case.name}}</td>
-      <td>{{item.case.client}}</td>
-      <td>{{item.stats.spent | number:1}}</td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr ng-repeat-end
-        ng-repeat="bill in item.bills"
-        uib-collapse="item.isCollapsed"
-        class="active">
+    <tr ng-repeat="bill in $ctrl.bills">
       <td>{{bill.case.name}}</td>
       <td>{{bill.case.client}}</td>
       <td>{{bill.spent | number:1}}</td>
       <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
       <td>{{bill.reason.name}}</td>
-      <td><span ng-click="$ctrl.destroyBill(item, bill.id)"
-                class="clickable glyphicon glyphicon-trash"></span></td>
     </tr>
   </table>
 </main>

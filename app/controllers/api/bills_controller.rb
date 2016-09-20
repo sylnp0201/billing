@@ -2,7 +2,12 @@ module Api
   class BillsController < ApiController
 
     def index
-      @bills = @current_user.bills.includes(:case).order(id: :desc)
+      startday = params[:startday] || '2012-01-01'
+      endday = params[:endday] || '2032-01-01'
+      @bills = @current_user.bills
+        .includes(:case)
+        .where(date: Date.parse(startday).beginning_of_day..Date.parse(endday).end_of_day)
+        .order(date: :desc)
     end
 
     def show

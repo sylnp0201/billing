@@ -4,60 +4,39 @@ angular
     function(Summary, $uibModal, Notification, Bill) {
       var $ctrl = this;
 
-      // render index page
-      $ctrl.init = function() {
-        $ctrl.summary = Summary.query(function(items) {
-          return items.map(function(item) {
-            return Object.assign(item, { isCollapsed: true });
-          });
-        });
+      // set the date range for the last n days
+      $ctrl.lastNDays = function(n) {
+        var dt = new Date();
+        dt.setDate(dt.getDate()-n);
+        $ctrl.startday = dt;
+        $ctrl.endday = new Date();
+        $ctrl.refresh();
       };
 
-      // toggle summary record collapse
-      $ctrl.toggleCollapsed = function(item) {
-        item.isCollapsed = !item.isCollapsed;
+      // set the date range as the last month
+      $ctrl.lastMonth = function() {
+        return $ctrl.lastNDays(30);
       };
 
-      // recalculate the item spent
-      $ctrl.updateSpent = function(item) {
-        item.stats.spent = item.bills.reduce(function(prev, curr) {
-          return prev + curr.spent;
-        }, 0);
+      // set the date range as the last week
+      $ctrl.lastWeek = function() {
+        return $ctrl.lastNDays(7);
       };
 
-      $ctrl.removeBillFromCase = function(kase, billId) {
-        kase.bills = kase.bills.filter(function(b) {
-          return b.id !== billId;
-        });
+      // set the date range as today
+      $ctrl.today = function() {
+        return $ctrl.lastNDays(0);
       };
 
-      // delete a bill
-      $ctrl.destroyBill = function(item, id) {
-        var modalInstance = $uibModal.open({
-          animation: true,
-          templateUrl: 'bills/destroy.html',
-          controller: 'DestroyBillModalCtrl',
-          controllerAs: '$ctrl',
-          resolve: {
-            bill: function () {
-              return Bill.get({ id: id });
-            }
-          }
+      // refresh the page
+      $ctrl.refresh = function() {
+        $ctrl.bills = Bill.query({
+          startday: $ctrl.startday,
+          endday: $ctrl.endday,
         });
-
-        modalInstance.result.then(function (billToDelete) {
-          billToDelete.$delete(
-            function(data) {
-              Notification.success('Billing record has been deleted.');
-              $ctrl.removeBillFromCase(item, id);
-              $ctrl.updateSpent(item);
-            },
-            Utils.notifyError(Notification)
-          );
-        });
-      }
+      };
 
       // init the page
-      $ctrl.init();
+      $ctrl.lastMonth(); // by default show the data of the last month
     }
   ]);
