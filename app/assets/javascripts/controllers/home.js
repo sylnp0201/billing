@@ -1,7 +1,7 @@
 angular
   .module('app.controllers')
-  .controller('HomeController', ['Summary', '$uibModal', 'Notification', 'Bill',
-    function(Summary, $uibModal, Notification, Bill) {
+  .controller('HomeController', ['$uibModal', 'Notification', 'Bill', 'BillStats',
+    function($uibModal, Notification, Bill, BillStats) {
       var $ctrl = this;
 
       // set the date range for the last n days
@@ -28,37 +28,8 @@ angular
         return $ctrl.lastNDays(0);
       };
 
-      // update the stats of the data model
-      $ctrl.calculateStats = function() {
-        $ctrl.groups.forEach(function(group) {
-          var spents = group.bills.map(function(bill) {
-            return bill.spent;
-          });
-
-          group.spent = spents.reduce(function(a, b) { return a+b; }, 0);
-        });
-      };
-
-      // create the data model for the view
-      $ctrl.dataModel = function() {
-        $ctrl.groups = $ctrl.bills.reduce(function(groups, bill) {
-          var casename = bill.case.name;
-          var lastGroup = groups[groups.length - 1];
-
-          if (!lastGroup || lastGroup.case.name !== casename) {
-            var newGroup = {
-              case: bill.case,
-              bills: [bill],
-            };
-            groups.push(newGroup);
-          } else {
-            lastGroup.bills.push(bill);
-          }
-
-          return groups;
-        }, []);
-
-        $ctrl.calculateStats();
+      $ctrl.toggleCollapsed = function(group) {
+        group.isCollapsed = !group.isCollapsed;
       };
 
       // refresh the page
@@ -66,7 +37,10 @@ angular
         $ctrl.bills = Bill.query({
           startday: $ctrl.startday,
           endday: $ctrl.endday,
-        }, $ctrl.dataModel);
+        }, function() {
+          $ctrl.groups = BillStats.createGroup($ctrl.bills);
+          window.groups = $ctrl.groups;
+        });
       };
 
       // init the page

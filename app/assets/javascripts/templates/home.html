@@ -30,10 +30,24 @@
       <th>Date</th>
       <th>Reason</th>
     </tr>
-    <tr ng-repeat="bill in $ctrl.bills">
-      <td>{{bill.case.name}}</td>
-      <td>{{bill.case.client}}</td>
-      <td>{{bill.case.description}}</td>
+    <tr ng-repeat-start="group in $ctrl.groups"
+        class="clickable"
+        ng-class="group.isCollapsed ? '' : 'active'"
+        ng-click="$ctrl.toggleCollapsed(group)">
+      <td>{{group.case.name}}</td>
+      <td>{{group.case.client}}</td>
+      <td>{{group.case.description}}</td>
+      <td>{{group.spent | number:1}}</td>
+      <td><span class="glyphicon glyphicon-calendar"></span></td>
+      <td><span class="glyphicon glyphicon-zoom-in"></span></td>
+    </tr>
+    <tr ng-repeat-end
+        ng-repeat="bill in group.bills"
+        uib-collapse="group.isCollapsed"
+        class="">
+      <td></td>
+      <td></td>
+      <td></td>
       <td>{{bill.spent | number:1}}</td>
       <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
       <td>{{bill.reason.name}}</td>

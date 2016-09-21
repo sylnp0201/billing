@@ -1,7 +1,8 @@
 .clickable {
   cursor: pointer;
-  &:hover {
-    color: #fbb03b;
+
+  &.glyphicon:hover {
+    color: yellowgreen;
   }
 }
 
