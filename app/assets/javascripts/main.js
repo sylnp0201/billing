@@ -99,6 +99,9 @@ app.run(['$rootScope', '$location', function($rootScope, $location) {
   $rootScope.$on('auth:login-success', function() {
     $location.path('/');
   });
+  $rootScope.$on('auth:logout-success', function() {
+    $location.path('/sign_in');
+  });
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     if (error && error.reason === 'unauthorized') {
       event.preventDefault();
