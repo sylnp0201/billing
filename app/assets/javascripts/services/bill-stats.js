@@ -14,8 +14,14 @@ angular
         return groups;
       }
 
+      var sortBills = function(bills) {
+        return bills.sort(function(a, b) {
+          return b.case.id - a.case.id;
+        });
+      };
+
       var createGroup = function (bills) {
-        var groups = bills.reduce(function(groups, bill) {
+        var groups = sortBills(bills).reduce(function(groups, bill) {
           var casename = bill.case.name;
           var lastGroup = groups[groups.length - 1];
 

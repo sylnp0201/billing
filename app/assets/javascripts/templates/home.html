@@ -3,19 +3,23 @@
 <main class="container-fluid main-content home">
   <div class="content-head">
     <h1>Billing Summary</h1>
-    <div class="button-group">
+    <div>
+      <div class="btn-group">
+        <button type="button"
+                ng-click="$ctrl.all()"
+                class="btn btn-default">All</button>
+        <button type="button"
+                ng-click="$ctrl.lastMonth()"
+                class="btn btn-default">Last Month</button>
+        <button type="button"
+                ng-click="$ctrl.lastWeek()"
+                class="btn btn-default">Last Week</button>
+        <button type="button"
+                ng-click="$ctrl.today()"
+                class="btn btn-default">Today</button>
+      </div>
       <button type="button"
-              ng-click="$ctrl.lastMonth()"
-              class="btn btn-default">Last Month</button>
-      <button type="button"
-              ng-click="$ctrl.lastWeek()"
-              class="btn btn-default">Last Week</button>
-      <button type="button"
-              ng-click="$ctrl.today()"
-              class="btn btn-default">Today</button>
-
-      <button type="button"
-              ng-click=""
+              ng-click="$ctrl.create()"
               class="btn btn-primary">New Bill</button>
     </div>
 
@@ -29,6 +33,7 @@
       <th>Spent</th>
       <th>Date</th>
       <th>Reason</th>
+      <th></th>
     </tr>
     <tr ng-repeat-start="group in $ctrl.groups"
         class="clickable"
@@ -40,6 +45,7 @@
       <td>{{group.spent | number:1}}</td>
       <td><span class="glyphicon glyphicon-calendar"></span></td>
       <td><span class="glyphicon glyphicon-zoom-in"></span></td>
+      <td></td>
     </tr>
     <tr ng-repeat-end
         ng-repeat="bill in group.bills"
@@ -51,6 +57,11 @@
       <td>{{bill.spent | number:1}}</td>
       <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
       <td>{{bill.reason.name}}</td>
+      <td>
+        <span class="glyphicon glyphicon-trash clickable"
+              ng-click="$ctrl.destroy(bill.id)">
+        </span>
+      </td>
     </tr>
   </table>
 </main>

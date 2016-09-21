@@ -1,7 +1,7 @@
 angular
   .module('app.controllers')
-  .controller('HomeController', ['$uibModal', 'Notification', 'Bill', 'BillStats',
-    function($uibModal, Notification, Bill, BillStats) {
+  .controller('HomeController', ['$uibModal', 'Notification', 'BillStats', 'Bill', 'Case', 'Reason',
+    function($uibModal, Notification, BillStats, Bill, Case, Reason) {
       var $ctrl = this;
 
       // set the date range for the last n days
@@ -28,9 +28,76 @@ angular
         return $ctrl.lastNDays(0);
       };
 
+      // set the date range as the last month
+      $ctrl.all = function() {
+        $ctrl.startday = new Date('2012-01-01');
+        $ctrl.endday = new Date('2032-12-31');
+        $ctrl.refresh();
+      };
+
       $ctrl.toggleCollapsed = function(group) {
         group.isCollapsed = !group.isCollapsed;
       };
+
+      // create a new bill
+      $ctrl.create = function() {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'bills/new.html',
+          controller: 'NewBillModalCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            cases: function() { return Case.query(); },
+            reasons: function() { return Reason.query(); },
+          }
+        });
+
+        modalInstance.result.then(function (newBill) {
+          newBill.case_id = newBill.case.id;
+          newBill.reason_id = newBill.reason.id;
+          newBill.spent = parseInt(newBill.spent, 10);
+          Bill.save(
+            { bill: newBill },
+            function(data) {
+              Notification.success('A new bill has been created.');
+              $ctrl.bills.push(new Bill(data));
+              $ctrl.groups = BillStats.createGroup($ctrl.bills);
+            },
+            Utils.notifyError(Notification)
+          );
+        });
+      }
+
+      // delete a bill
+      $ctrl.destroy = function(id) {
+        var modalInstance = $uibModal.open({
+          animation: true,
+          templateUrl: 'bills/destroy.html',
+          controller: 'DestroyBillModalCtrl',
+          controllerAs: '$ctrl',
+          resolve: {
+            bill: function () {
+              return $ctrl.bills.find(function(bill) {
+                return bill.id === id;
+              });
+            }
+          }
+        });
+
+        modalInstance.result.then(function(billToDelete) {
+          billToDelete.$delete(
+            function(data) {
+              Notification.success('Billing record has been deleted.');
+              $ctrl.bills = $ctrl.bills
+                .filter(function(item) {
+                  return item.id !== billToDelete.id;
+                });
+              $ctrl.refresh();
+            },
+            Utils.notifyError(Notification)
+          );
+        });
+      }
 
       // refresh the page
       $ctrl.refresh = function() {
