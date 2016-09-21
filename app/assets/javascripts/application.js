@@ -20,6 +20,8 @@
 //= require angular-cookie
 //= require angular-resource
 //= require angular-rails-templates
+//= require angular-animate
+//= require angular-loading-bar
 //= require ng-token-auth
 //= require main
 //= require_tree .

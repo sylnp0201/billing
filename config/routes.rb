@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :cases
     resources :bills
     resources :reasons
-    get 'summary', to: 'summary#index'
   end
 
   root 'home#index'

@@ -29,6 +29,8 @@ const app = angular.module('app', [
   'ngResource',
   'ng-token-auth',
   'templates',
+  'ngAnimate',
+  'angular-loading-bar',
   'app.resources',
   'app.controllers',
   'app.directives',
@@ -88,7 +90,10 @@ const app = angular.module('app', [
       positionY: 'bottom'
     });
   }
-]);
+])
+.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.includeSpinner = false;
+}]);
 
 app.run(['$rootScope', '$location', function($rootScope, $location) {
   $rootScope.$on('auth:login-success', function() {

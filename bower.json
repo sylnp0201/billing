@@ -8,7 +8,9 @@
     "angular-ui-router": "*",
     "angular-bootstrap": "*",
     "angular-ui-notification": "*",
-    "ng-token-auth": "*"
+    "ng-token-auth": "*",
+    "angular-animate": "*",
+    "angular-loading-bar": "*"
   },
   "resolutions": {
     "angular": "1.5.8"
