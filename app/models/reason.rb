@@ -1,5 +1,8 @@
 class Reason < ApplicationRecord
-  validates :name,  presence: true, uniqueness: true
+  validates :name,  presence: true, uniqueness: {
+    scope: :user,
+    message: 'The task already exists'
+  }
 
-  has_many :bills
+  belongs_to :user
 end

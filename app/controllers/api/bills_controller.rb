@@ -38,7 +38,7 @@ module Api
     end
 
     def destroy
-      @bill = Bill.find(params[:id])
+      @bill = @current_user.bills.find(params[:id])
       if (@bill.user === @current_user)
         @bill.destroy
       else
@@ -46,10 +46,15 @@ module Api
       end
     end
 
+    def last
+      @bill = @current_user.bills.order(:id).last
+      render 'show'
+    end
+
     private
 
       def bill_params
-        params.require(:bill).permit(:id, :case_id, :date, :description, 
+        params.require(:bill).permit(:id, :case_id, :date, :description,
           :spent, :task, :start_time, :end_time)
       end
 

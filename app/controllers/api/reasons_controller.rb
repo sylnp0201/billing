@@ -2,14 +2,13 @@ module Api
   class ReasonsController < ApiController
 
     def index
-      @reasons = Reason.all.order(id: :desc)
+      @reasons = @current_user.reasons.order(id: :desc)
       render json: @reasons
     end
 
     def create
       begin
-        @reason = Reason.new(reason_params)
-        @reason.save!
+        @reason = @current_user.reasons.create!(reason_params)
         render json: @reason
       rescue ActiveRecord::RecordInvalid => e
         render :json => { message: e }, :status => :unprocessable_entity
@@ -17,24 +16,19 @@ module Api
     end
 
     def update
-      @reason = Reason.find(params[:id])
+      @reason = @current_user.reasons.find(params[:id])
 
       if (@reason.present?)
         @reason.update_attributes(reason_params)
         @reason.save!
         render json: @reason
       else
-        render :json => { message: 'Billing Reason Not Found' }, :status => :unprocessable_entity
+        render :json => { message: 'Billing Task Not Found' }, :status => :unprocessable_entity
       end
     end
 
     def destroy
-      @reason = Reason.find(params[:id])
-      if (@reason.bills.count < 1)
-        @reason.destroy
-      else
-        render :json => { message: 'Can not delete' }, :status => :unprocessable_entity
-      end
+      @current_user.reasons.destroy(params[:id])
     end
 
     private

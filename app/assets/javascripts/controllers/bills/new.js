@@ -1,7 +1,8 @@
 angular
   .module('app.controllers')
-  .controller('NewBillModalCtrl', ['$scope', '$uibModalInstance', 'cases', 'reasons',
-    function ($scope, $uibModalInstance, cases, reasons) {
+  .controller('NewBillModalCtrl', [
+    '$scope', '$uibModalInstance', 'cases', 'reasons', 'Bill', 'LastBill',
+    function ($scope, $uibModalInstance, cases, reasons, Bill, LastBill) {
       var $ctrl = this;
       $scope.taskTemplate = '';
 
@@ -39,6 +40,12 @@ angular
       $ctrl.cancel = function() {
         $uibModalInstance.dismiss('cancel');
       };
+
+      $ctrl.ditto = function() {
+        LastBill.get().then(function(data) {
+          $ctrl.bill = data;
+        });
+      }
 
       $ctrl.init = function() {
         $ctrl.bill = {};
