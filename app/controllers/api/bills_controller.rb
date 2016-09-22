@@ -49,7 +49,8 @@ module Api
     private
 
       def bill_params
-        params.require(:bill).permit(:id, :case_id, :reason_id, :date, :description, :spent)
+        params.require(:bill).permit(:id, :case_id, :date, :description, 
+          :spent, :task, :start_time, :end_time)
       end
 
   end

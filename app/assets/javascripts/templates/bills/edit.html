@@ -37,13 +37,19 @@
              class="form-control">
     </div>
 
-    <div class="form-group">
-      <label for="reason">Billing Reason</label>
-      <select ng-options="reason as reason.name for reason in $ctrl.reasons track by reason.id"
+    <div class="form-group template-input">
+      <label for="task">Task</label>
+      <select ng-options="reason as ('-- ' + reason.name + ' --') for reason in $ctrl.reasons track by reason.id"
               class="form-control"
-              ng-model="$ctrl.bill.reason">
+              ng-model="taskTemplate">
+        <option value=''>-- Choose A Task Template --</option>
       </select>
+      <textarea id="task-input" type="text" name="task"
+                ng-model="$ctrl.bill.task"
+                class="form-control">
+      </textarea>
     </div>
+  </div>
 
   <div class="modal-footer">
       <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>

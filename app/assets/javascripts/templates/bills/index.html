@@ -15,7 +15,9 @@
       <th>Client</th>
       <th>Spent</th>
       <th>Date</th>
-      <th>Reason</th>
+      <th>Task</th>
+      <th>Start</th>
+      <th>End</th>
       <th>Edit</th>
       <th>Remove</th>
     </tr>
@@ -24,7 +26,9 @@
       <td>{{bill.case.client}}</td>
       <td>{{bill.spent | number:1}}</td>
       <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
-      <td>{{bill.reason.name}}</td>
+      <td>{{bill.task}}</td>
+      <td>{{bill.start_time | date:'HH:mm'}}</td>
+      <td>{{bill.end_time | date:'HH:mm'}}</td>
       <td><span ng-click="$ctrl.editBill(bill.id)"
                 class="clickable glyphicon glyphicon-pencil"></span></td>
       <td><span ng-click="$ctrl.destroyBill(bill.id)"
