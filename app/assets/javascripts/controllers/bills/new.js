@@ -12,6 +12,15 @@ angular
         }
       });
 
+      $ctrl.timeChanged = function() {
+        if ($ctrl.bill.start_time && $ctrl.bill.end_time) {
+          var start = new Date($ctrl.bill.start_time);
+          var end = new Date($ctrl.bill.end_time);
+
+          $ctrl.bill.spent = ((end - start)/1000/60/60).toPrecision(3);
+        }
+      };
+
       $ctrl.today = function() {
         $ctrl.bill.date = new Date();
       };
