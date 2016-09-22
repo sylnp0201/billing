@@ -3,5 +3,7 @@ json.array! @bills do |bill|
   json.date bill.date
   json.spent bill.spent
   json.case bill.case
-  json.reason bill.reason
+  json.task bill.task
+  json.start_time bill.start_time
+  json.end_time bill.end_time
 end

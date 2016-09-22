@@ -1,3 +1,15 @@
+$header-height: 52p;x
+
+app-header {
+  position: fixed;
+  width: 100%;
+  max-height: $header-height;
+}
+
+main {
+  padding-top: $header-height;
+}
+
 .clickable {
   cursor: pointer;
 
@@ -42,5 +54,15 @@
 
   .uib-button-bar {
     padding: 10px 0 2px;
+  }
+}
+
+.template-input {
+  select{
+    color: #999;
+  }
+
+  textarea {
+    margin-top: 5px;
   }
 }

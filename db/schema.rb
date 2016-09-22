@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160920022618) do
+ActiveRecord::Schema.define(version: 20160922004451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,9 @@ ActiveRecord::Schema.define(version: 20160920022618) do
     t.float    "spent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "reason_id"
+    t.string   "task"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["date"], name: "index_bills_on_date", using: :btree
     t.index ["user_id", "case_id"], name: "index_bills_on_user_id_and_case_id", using: :btree
   end
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160920022618) do
     t.string   "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.text     "summary"
     t.index ["deadline"], name: "index_cases_on_deadline", using: :btree
     t.index ["name"], name: "index_cases_on_name", using: :btree
     t.index ["user_id", "name"], name: "index_cases_on_user_id_and_name", using: :btree

@@ -32,7 +32,7 @@ module Api
     private
 
       def case_params
-        params.require(:case).permit(:id, :name, :deadline, :client, :description)
+        params.require(:case).permit(:id, :name, :deadline, :client, :summary, :description)
       end
 
   end

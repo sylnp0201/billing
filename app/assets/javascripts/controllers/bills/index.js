@@ -47,7 +47,6 @@ angular
 
         modalInstance.result.then(function (newBill) {
           newBill.case_id = newBill.case.id;
-          newBill.reason_id = newBill.reason.id;
           Bill.save(
             { bill: newBill },
             function(data) {
@@ -79,9 +78,6 @@ angular
 
         modalInstance.result.then(function (billToUpdate) {
           billToUpdate.case_id = billToUpdate.case.id;
-          if (billToUpdate.reason) {
-            billToUpdate.reason_id = billToUpdate.reason.id;
-          }
           billToUpdate.$update(
             function(data) {
               Notification.success('The billing record has been updated successfully.');

@@ -29,11 +29,12 @@
     <tr>
       <th>Case Number</th>
       <th>Client</th>
-      <th>Note</th>
+      <th>Summary</th>
       <th>Spent</th>
       <th>Date</th>
-      <th>Reason</th>
+      <th>Task</th>
       <th></th>
+      <th>Note</th>
     </tr>
     <tr ng-repeat-start="group in $ctrl.groups"
         class="clickable"
@@ -41,11 +42,12 @@
         ng-click="$ctrl.toggleCollapsed(group)">
       <td>{{group.case.name}}</td>
       <td>{{group.case.client}}</td>
-      <td>{{group.case.description}}</td>
+      <td>{{group.case.summary}}</td>
       <td>{{group.spent | number:1}}</td>
       <td><span class="glyphicon glyphicon-calendar"></span></td>
       <td><span class="glyphicon glyphicon-zoom-in"></span></td>
       <td></td>
+      <td>{{group.case.description}}</td>
     </tr>
     <tr ng-repeat-end
         ng-repeat="bill in group.bills"
@@ -56,12 +58,13 @@
       <td></td>
       <td>{{bill.spent | number:1}}</td>
       <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
-      <td>{{bill.reason.name}}</td>
+      <td>{{bill.task}}</td>
       <td>
         <span class="glyphicon glyphicon-trash clickable"
               ng-click="$ctrl.destroy(bill.id)">
         </span>
       </td>
+      <td></td>
     </tr>
   </table>
 </main>

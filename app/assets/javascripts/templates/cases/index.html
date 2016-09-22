@@ -13,6 +13,7 @@
     <tr>
       <th>Number</th>
       <th>Client</th>
+      <th>Summary</th>
       <th>Note</th>
       <th>Edit</th>
       <th>Remove</th>
@@ -20,6 +21,7 @@
     <tr ng-repeat="case in $ctrl.cases">
       <td>{{case.name}}</td>
       <td>{{case.client}}</td>
+      <td>{{case.summary}}</td>
       <td>{{case.description}}</td>
       <td><span ng-click="$ctrl.editCase(case.id)"
                 class="clickable glyphicon glyphicon-pencil"></span></td>
