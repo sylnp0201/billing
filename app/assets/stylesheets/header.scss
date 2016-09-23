@@ -5,6 +5,7 @@ app-header {
   width: 100%;
   max-height: $header-height;
   overflow: hidden;
+  z-index: 9;
 }
 
 main {
