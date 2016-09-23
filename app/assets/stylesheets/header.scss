@@ -1,0 +1,23 @@
+$header-height: 52px;
+
+app-header {
+  position: fixed;
+  width: 100%;
+  max-height: $header-height;
+  overflow: hidden;
+}
+
+main {
+  padding-top: $header-height;
+}
+
+@media (max-width: 768px) {
+  .navbar-nav>li {
+    float: left;
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
