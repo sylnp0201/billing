@@ -8,7 +8,10 @@ Rails.application.routes.draw do
 
     resources :bills
     get 'last_bill', to: 'bills#last'
+    post 'downloads', to: 'downloads#create'
   end
+
+  get 'downloads/:user_id/:token/:filename', to: 'downloads#index'
 
   root 'home#index'
 

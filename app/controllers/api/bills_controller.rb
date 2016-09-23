@@ -8,6 +8,11 @@ module Api
         .includes(:case)
         .where(date: Date.parse(startday).beginning_of_day..Date.parse(endday).end_of_day)
         .order(case_id: :asc, date: :desc)
+
+      respond_to do |format|
+        format.json
+        format.xlsx { render layout: false, locals: {bills: @bills} }
+      end
     end
 
     def show

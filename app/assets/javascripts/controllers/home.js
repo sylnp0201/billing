@@ -1,7 +1,8 @@
 angular
   .module('app.controllers')
-  .controller('HomeController', ['$uibModal', 'Notification', 'BillStats', 'Bill', 'Case', 'Reason',
-    function($uibModal, Notification, BillStats, Bill, Case, Reason) {
+  .controller('HomeController', [
+    '$uibModal', 'Notification', 'BillStats', 'Bill', 'Case', 'Reason', 'Download',
+    function($uibModal, Notification, BillStats, Bill, Case, Reason, Download) {
       var $ctrl = this;
 
       // set the date range for the last n days
@@ -96,6 +97,11 @@ angular
             Utils.notifyError(Notification)
           );
         });
+      }
+
+      // download the excel sheet
+      $ctrl.download = function() {
+        return Download.post($ctrl);
       }
 
       // refresh the page

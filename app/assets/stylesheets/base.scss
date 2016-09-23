@@ -1,4 +1,4 @@
-$header-height: 52p;x
+$header-height: 52px;
 
 app-header {
   position: fixed;
@@ -10,6 +10,10 @@ main {
   padding-top: $header-height;
 }
 
+h1 {
+  margin: 15px 0;
+}
+
 .clickable {
   cursor: pointer;
 
@@ -18,15 +22,17 @@ main {
   }
 }
 
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .content-head {
   display: flex;
   align-items: baseline;;
   justify-content: space-between;
   margin-bottom: 10px;
-
-  h1 {
-    float: left;
-  }
 
   .add-new {
     float: right;

@@ -2,7 +2,12 @@
 
 <main class="container-fluid main-content home">
   <div class="content-head">
-    <h1>Billing Summary</h1>
+    <div class="flex-row">
+      <h1>Billing Summary</h1>
+      <span class="glyphicon glyphicon-download download-btn clickable"
+            ng-click="$ctrl.download()"></span>
+    </div>
+
     <div>
       <div class="btn-group">
         <button type="button"

@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   has_many :cases, dependent: :destroy
   has_many :bills, through: :cases
   has_many :reasons, dependent: :destroy
+  has_many :downloads, dependent: :destroy
 end

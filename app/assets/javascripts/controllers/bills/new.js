@@ -18,7 +18,7 @@ angular
           var start = new Date($ctrl.bill.start_time);
           var end = new Date($ctrl.bill.end_time);
 
-          $ctrl.bill.spent = ((end - start)/1000/60/60).toPrecision(3);
+          $ctrl.bill.spent = Math.round((end - start)/1000/60/60 * 10) / 10;;
         }
       };
 

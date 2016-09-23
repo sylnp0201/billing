@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Billings") do |sheet|
+  sheet.add_row [
+    'Case Number', 'Client', 'Summary', 'Spent',
+    'Task', 'Date', 'Start', 'End'
+  ]
+  @bills.each do |b|
+    start_time = b.start_time ? b.start_time.strftime("%H:%M") : nil
+    end_time = b.end_time ? b.end_time.strftime("%H:%M") : nil
+    sheet.add_row [
+      b.case.name, b.case.client, b.case.description, b.spent,
+      b.task, b.date, start_time, end_time
+    ]
+  end
+end
