@@ -18,7 +18,7 @@ angular
           var start = new Date($ctrl.bill.start_time);
           var end = new Date($ctrl.bill.end_time);
 
-          $ctrl.bill.spent = Math.round((end - start)/1000/60/60 * 10) / 10;;
+          $ctrl.bill.spent = Math.round((end - start)/1000/60/60 * 100) / 100;;
         }
       };
 
@@ -45,10 +45,29 @@ angular
         LastBill.get().then(function(data) {
           $ctrl.bill = data;
         });
-      }
+      };
+
+      $ctrl.toggleTicktock = function() {
+        var ticktock = $ctrl.ticktock;
+        var btn = document.getElementById('ticktock');
+        btn.blur();
+
+        if (ticktock === 0 || ticktock === '0') {
+          // end counting
+          $ctrl.bill.end_time = new Date();
+          $ctrl.timeChanged();
+          btn.querySelector('.action-text').textContent = 'Tick';
+        } else {
+          // start counting
+          var start = new Date();
+          $ctrl.bill.start_time = start;
+          btn.querySelector('.action-text').textContent = 'Tock';
+        }
+      };
 
       $ctrl.init = function() {
         $ctrl.bill = {};
+        $ctrl.ticktock = "0";
         $ctrl.cases = cases;
         $ctrl.reasons = reasons;
         $ctrl.calendar = { opened: false };
