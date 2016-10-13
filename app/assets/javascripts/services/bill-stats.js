@@ -20,6 +20,10 @@ angular
         });
       };
 
+      var calculateTotal = function() {
+
+      };
+
       var createGroup = function (bills) {
         var groups = sortBills(bills).reduce(function(groups, bill) {
           var casename = bill.case.name;
@@ -29,7 +33,7 @@ angular
             var newGroup = {
               case: bill.case,
               bills: [bill],
-              isCollapsed: true,
+              isCollapsed: false,
             };
             groups.push(newGroup);
           } else {

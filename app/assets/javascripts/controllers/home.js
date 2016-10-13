@@ -26,7 +26,7 @@ angular
 
       // set the date range as today
       $ctrl.today = function() {
-        return $ctrl.lastNDays(0);
+        return $ctrl.lastNDays(1);
       };
 
       // set the date range as the last month
@@ -66,7 +66,7 @@ angular
             Utils.notifyError(Notification)
           );
         });
-      }
+      };
 
       // delete a bill
       $ctrl.destroy = function(id) {
@@ -97,7 +97,7 @@ angular
             Utils.notifyError(Notification)
           );
         });
-      }
+      };
 
       // download the excel sheet
       $ctrl.download = function() {
@@ -111,11 +111,13 @@ angular
           endday: $ctrl.endday,
         }, function() {
           $ctrl.groups = BillStats.createGroup($ctrl.bills);
-          window.groups = $ctrl.groups;
+          $ctrl.totalSpent = $ctrl.groups.reduce(function(total, current) {
+            return total + current.spent;
+          }, 0);
         });
       };
 
       // init the page
-      $ctrl.lastMonth(); // by default show the data of the last month
+      $ctrl.today(); // by default show the data of the last month
     }
   ]);
