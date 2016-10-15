@@ -53,6 +53,10 @@ angular
       $ctrl.ditto = function() {
         LastBill.get().then(function(data) {
           $ctrl.bill = data;
+          $ctrl.bill.start_time = null;
+          $ctrl.bill.end_time = null;
+          $ctrl.bill.date = new Date();
+          $ctrl.bill.spent = 0;
         });
       };
 
