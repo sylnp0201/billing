@@ -8,7 +8,8 @@ angular
       // set the date range for the last n days
       $ctrl.lastNDays = function(n) {
         var dt = new Date();
-        dt.setDate(dt.getDate()-n);
+        dt.setDate(dt.getDate()-n+1);
+        dt.setHours(0,0,0,0); // start of today
         $ctrl.startday = dt;
         $ctrl.endday = new Date();
         $ctrl.refresh();

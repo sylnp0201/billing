@@ -18,6 +18,7 @@
       <input type="text" class="form-control"
              uib-datepicker-popup="{{$ctrl.dateFormat}}"
              ng-model="$ctrl.bill.date"
+             ng-change="$ctrl.timeChanged()"
              is-open="$ctrl.calendar.opened"
              datepicker-options="$ctrl.dateOptions"
              ng-required="true"

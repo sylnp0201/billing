@@ -14,11 +14,20 @@ angular
       });
 
       $ctrl.timeChanged = function() {
-        if ($ctrl.bill.start_time && $ctrl.bill.end_time) {
-          var start = new Date($ctrl.bill.start_time);
-          var end = new Date($ctrl.bill.end_time);
+        var bill = $ctrl.bill;
+        var date = bill.date.getDate();
 
-          $ctrl.bill.spent = Math.round((end - start)/1000/60/60 * 100) / 100;;
+        if (bill.start_time) {
+          bill.start_time.setDate(date);
+        }
+
+        if (bill.end_time) {
+          bill.end_time.setDate(date);
+        }
+
+        if (bill.start_time && bill.end_time) {
+          var diff = bill.end_time - bill.start_time;
+          bill.spent = Math.round(diff/1000/60/60 * 100) / 100;
         }
       };
 

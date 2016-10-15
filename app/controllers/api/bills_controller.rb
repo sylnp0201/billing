@@ -6,7 +6,7 @@ module Api
       endday = params[:endday] || '2032-01-01'
       @bills = @current_user.bills
         .includes(:case)
-        .where(date: Date.parse(startday).beginning_of_day..Date.parse(endday).end_of_day)
+        .where(date: DateTime.parse(startday)..DateTime.parse(endday))
         .order(case_id: :asc, date: :desc)
 
       respond_to do |format|
