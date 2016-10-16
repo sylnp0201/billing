@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
 
   get 'downloads/:user_id/:token/:filename', to: 'downloads#index'
+  get '/.well-known/acme-challenge/:id' => 'home#letsencrypt'
 
   root 'home#index'
 
