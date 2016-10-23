@@ -17,8 +17,31 @@ angular
 
       // set the date range as the last month
       $ctrl.lastMonth = function() {
-        return $ctrl.lastNDays(30);
+        var dt = new Date();
+
+        var thisMonth = dt.getMonth();
+        var lastMonth = thisMonth ? thisMonth - 1 : 11;
+        dt.setMonth(lastMonth);
+        dt.setDate(1); // first day of a month
+        dt.setHours(0,0,0,0); // start of a day
+        $ctrl.startday = dt;
+
+        var thisYear = dt.getFullYear();
+        var year = thisMonth ? thisYear : thisYear - 1;
+        var lastDay = new Date(year, lastMonth + 1, 0);
+        lastDay.setHours(23, 59, 59, 0); // end of a day
+        $ctrl.endday = lastDay;
+        return $ctrl.refresh();
       };
+
+      $ctrl.thisMonth = function() {
+        var dt = new Date();
+        dt.setDate(1);
+        dt.setHours(0,0,0,0);
+        $ctrl.startday = dt;
+        $ctrl.endday = new Date();
+        $ctrl.refresh();
+      }
 
       // set the date range as the last week
       $ctrl.lastWeek = function() {
