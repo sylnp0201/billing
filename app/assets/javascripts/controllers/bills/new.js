@@ -27,7 +27,7 @@ angular
 
         if (bill.start_time && bill.end_time) {
           var diff = bill.end_time - bill.start_time;
-          bill.spent = Math.round(diff/1000/60/60 * 100) / 100;
+          bill.spent = Math.round(diff/1000.0/60/60 * 100) / 100;
         }
       };
 
@@ -68,7 +68,6 @@ angular
         if (ticktock === 0 || ticktock === '0') {
           // end counting
           $ctrl.bill.end_time = new Date();
-          $ctrl.timeChanged();
           btn.querySelector('.action-text').textContent = 'Tick';
         } else {
           // start counting
@@ -76,6 +75,8 @@ angular
           $ctrl.bill.start_time = start;
           btn.querySelector('.action-text').textContent = 'Tock';
         }
+
+        $ctrl.timeChanged();
       };
 
       $ctrl.init = function() {
