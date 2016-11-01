@@ -21,6 +21,8 @@ module Billing
       end
     end
 
+    config.time_zone = 'Eastern Time (US & Canada)'
+
     config.assets.paths << Rails.root.join('node_modules')
     config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
