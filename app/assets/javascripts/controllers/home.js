@@ -79,7 +79,7 @@ angular
 
         modalInstance.result.then(function (newBill) {
           newBill.case_id = newBill.case.id;
-          newBill.spent = parseInt(newBill.spent, 10);
+          newBill.spent = parseFloat(newBill.spent);
           Bill.save(
             { bill: newBill },
             function(data) {
