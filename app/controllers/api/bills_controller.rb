@@ -7,7 +7,6 @@ module Api
       @bills = @current_user.bills
         .includes(:case)
         .where(date: DateTime.parse(startday)..DateTime.parse(endday))
-        .limit(40)
         .order(start_time: :desc)
 
       respond_to do |format|
