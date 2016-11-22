@@ -2,7 +2,7 @@ module Api
   class CasesController < ApiController
 
     def index
-      @cases = @current_user.cases
+      @cases = @current_user.cases.order(name: :desc)
       render json: @cases
     end
 
