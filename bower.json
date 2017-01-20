@@ -1,18 +1,18 @@
 {
   "name" : "dsl-generated-dependencies",
   "dependencies": {
-    "angular": "~1.5.8",
-    "angular-route": "~1.5.8",
-    "angular-resource": "~1.5.8",
+    "angular": "~1.5.11",
+    "angular-route": "~1.5.11",
+    "angular-resource": "~1.5.11",
     "angular-cookie": "~4.1.0",
     "angular-ui-router": "*",
     "angular-bootstrap": "*",
     "angular-ui-notification": "*",
     "ng-token-auth": "*",
-    "angular-animate": "*",
+    "angular-animate": "~1.5.11",
     "angular-loading-bar": "*"
   },
   "resolutions": {
-    "angular": "1.5.8"
+    "angular": "1.5.11"
   }
 }
