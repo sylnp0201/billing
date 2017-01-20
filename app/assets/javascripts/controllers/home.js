@@ -20,14 +20,17 @@ angular
         var dt = new Date();
 
         var thisMonth = dt.getMonth();
+        var lastMonth = thisMonth - 1;
+        var thisYear = dt.getFullYear();
+
         var lastMonth = thisMonth ? thisMonth - 1 : 11;
+        var year = thisMonth ? thisYear : thisYear - 1;
+        dt.setFullYear(year);
         dt.setMonth(lastMonth);
         dt.setDate(1); // first day of a month
         dt.setHours(0,0,0,0); // start of a day
         $ctrl.startday = dt;
 
-        var thisYear = dt.getFullYear();
-        var year = thisMonth ? thisYear : thisYear - 1;
         var lastDay = new Date(year, lastMonth + 1, 0);
         lastDay.setHours(23, 59, 59, 0); // end of a day
         $ctrl.endday = lastDay;
