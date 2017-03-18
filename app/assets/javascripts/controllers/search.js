@@ -3,11 +3,16 @@ angular
   .controller('SearchCtrl', ['$uibModalInstance', 'Case',
     function($uibModalInstance, Case) {
       var $ctrl = this;
+      $ctrl.case = {};
+
+      setTimeout(function() {
+        document.querySelector('.search-input').focus();
+      }, 50);
 
       $ctrl.autocomplete = function() {
         $ctrl.autocompleteOptions = [];
 
-        if (!$ctrl.case) {
+        if (!$ctrl.case.name) {
           return;
         }
 
