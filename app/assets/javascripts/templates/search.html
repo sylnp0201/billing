@@ -34,7 +34,7 @@
         <tr ng-repeat="bill in $ctrl.result.bills">
           <th></td>
           <td>{{bill.spent | number:1}}</td>
-          <td>{{bill.date}}</td>
+          <td>{{bill.date | date:'yyyy-MM-dd'}}</td>
           <td>{{bill.task}}</td>
         </tr>
         <tr class="total success">
