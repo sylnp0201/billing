@@ -10,6 +10,7 @@
              name="name"
              ng-model="$ctrl.case.name"
              ng-change="$ctrl.autocomplete()"
+             ng-model-options='{ debounce: 500 }'
              required="required"
              class="form-control search-input">
        <ul class="dropdown" ng-if="$ctrl.autocompleteOptions">
@@ -47,7 +48,6 @@
   </div>
 
   <div class="modal-footer">
-    <button class="btn btn-primary" type="button" ng-click="$ctrl.search()">Search</button>
     <button class="btn btn-warning" type="button" ng-click="$ctrl.close()">Close</button>
   </div>
 </div>
