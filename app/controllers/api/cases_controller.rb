@@ -2,8 +2,17 @@ module Api
   class CasesController < ApiController
 
     def index
-      @cases = @current_user.cases.order(name: :desc)
+      if params[:q]
+        @cases = @current_user.cases.search(name_start: params[:q]).result.order(:name)
+      else
+        @cases = @current_user.cases.order(name: :desc)
+      end
+
       render json: @cases
+    end
+
+    def show
+      @case = @current_user.cases.find(params[:id])
     end
 
     def create

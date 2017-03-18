@@ -15,6 +15,12 @@
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right sm-hide">
+      <li ng-show="user.id">
+        <a class="glyphicon glyphicon-search"
+           href="#"
+           ng-click="$headerCtrl.openSearch()">
+        </a>
+      </li>
       <li ng-show="!user.id">
         <a ng-href="/sign_in">Login</a>
       </li>

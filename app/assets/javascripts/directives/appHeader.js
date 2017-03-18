@@ -4,6 +4,7 @@ angular
     return {
       restrict: 'E',
       controller: 'HeaderController',
+      controllerAs: '$headerCtrl',
       templateUrl: 'global/header.html'
     };
   });

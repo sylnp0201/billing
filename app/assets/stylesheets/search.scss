@@ -1,0 +1,28 @@
+.search {
+  .autocomplete {
+    position: relative;
+
+    ul.dropdown {
+      border: 1px solid #aaa;
+      list-style: none;
+      padding-left: 0;
+
+
+    }
+
+    .dropdown__item {
+      padding-left: 12px;
+      margin: 2px 0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #eee;
+      }
+    }
+
+  }
+
+  .total {
+    font-weight: 700;
+  }
+}

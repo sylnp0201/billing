@@ -3,10 +3,14 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     mount_devise_token_auth_for 'User', at: '/auth'
-    resources :cases
-    resources :reasons
 
+    resources :cases do
+      get 'search', to: 'cases#index'
+    end
+
+    resources :reasons
     resources :bills
+
     get 'last_bill', to: 'bills#last'
     post 'downloads', to: 'downloads#create'
   end
