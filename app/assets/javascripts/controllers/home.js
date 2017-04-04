@@ -1,9 +1,36 @@
 angular
   .module('app.controllers')
   .controller('HomeController', [
-    '$uibModal', 'Notification', 'BillStats', 'Bill', 'Case', 'Reason', 'Download',
-    function($uibModal, Notification, BillStats, Bill, Case, Reason, Download) {
+    '$uibModal', 'Notification', 'BillStats', 'Bill', 'Case', 'Reason', 'Download', '$scope',
+    function($uibModal, Notification, BillStats, Bill, Case, Reason, Download, $scope) {
       var $ctrl = this;
+
+      $ctrl.dateOptions = {
+        formatYear: 'yy',
+        maxDate: new Date(2025, 12, 31),
+        minDate: new Date(2010, 1, 1),
+        startingDay: 1
+      };
+
+      $ctrl.openStartDay = function() {
+        $ctrl.startdayOpened = true;
+      };
+
+      $ctrl.openEndDay = function() {
+        $ctrl.enddayOpened = true;
+      };
+
+      $ctrl.customDatePicked = function() {
+        if (!$ctrl.customStartDay || !$ctrl.customEndDay) {
+          return;
+        }
+
+        $ctrl.startday = $ctrl.customStartDay;
+        $ctrl.endday = new Date($ctrl.customEndDay);
+        $ctrl.endday.setHours(23, 59, 59, 0); // end of a day
+
+        $ctrl.refresh();
+      }
 
       // set the date range for the last n days
       $ctrl.lastNDays = function(n) {
@@ -145,5 +172,13 @@ angular
 
       // init the page
       $ctrl.today(); // by default show the data of the last month
+
+      $scope.$watch('$ctrl.customStartDay', function() {
+        $ctrl.customDatePicked();
+      });
+
+      $scope.$watch('$ctrl.customEndDay', function() {
+        $ctrl.customDatePicked();
+      });
     }
   ]);

@@ -8,6 +8,50 @@
             ng-click="$ctrl.download()"></span>
     </div>
 
+    <div class="date-pickers">
+      <div class="start-date">
+        <span class="date-picker-label">Start</span>
+        <div class="input-group">
+          <input type="text"
+                 class="form-control"
+                 uib-datepicker-popup="yyyy/MM/dd"
+                 ng-model="$ctrl.customStartDay"
+                 is-open="$ctrl.startdayOpened"
+                 datepicker-options="$ctrl.dateOptions"
+                 ng-required="true"
+                 placeholder="Start Date"
+                 close-text="Close"
+                 alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.openStartDay()">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="end-date">
+        <span class="date-picker-label">End</span>
+        <div class="input-group">
+          <input type="text"
+                 class="form-control"
+                 uib-datepicker-popup="yyyy/MM/dd"
+                 ng-model="$ctrl.customEndDay"
+                 is-open="$ctrl.enddayOpened"
+                 datepicker-options="$ctrl.dateOptions"
+                 ng-required="true"
+                 placeholder="End Date"
+                 close-text="Close"
+                 alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="$ctrl.openEndDay()">
+              <i class="glyphicon glyphicon-calendar"></i>
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+
     <div>
       <div class="btn-group">
         <button type="button"
@@ -30,7 +74,6 @@
               ng-click="$ctrl.create()"
               class="btn btn-primary">New Bill</button>
     </div>
-
   </div>
 
   <table class="table table-hover table-condensed table-expandable">

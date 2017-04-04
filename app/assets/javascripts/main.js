@@ -48,6 +48,7 @@ const app = angular.module('app', [
       .state({
         name: 'login',
         url: '/sign_in',
+        controller: 'UserSessionsController as $ctrl',
         templateUrl: 'user_sessions/new.html',
       })
       .state({

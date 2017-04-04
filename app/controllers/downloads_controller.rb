@@ -7,7 +7,7 @@ class DownloadsController < ApplicationController
       startday = params[:startday] || '2012-01-01'
       endday = params[:endday] || '2032-01-01'
       @bills = user.bills.includes(:case)
-        .where(date: Date.parse(startday).beginning_of_day..Date.parse(endday).end_of_day)
+        .where(date: Date.parse(startday)..Date.parse(endday))
         .order(case_id: :asc, date: :desc)
       download.destroy
       respond_to { |format| format.xlsx }
